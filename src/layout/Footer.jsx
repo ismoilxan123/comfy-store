@@ -45,13 +45,13 @@ const Footer = ({
           </h2>
           <hr className="border-black" />
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 sm:grid grid-cols-1">
           {homeProducts.map((product) => (
             <NavLink to={"/products"}>
               <div
                 onClick={() => handleClick(product.id)}
                 key={product.attributes.title}
-                className="card w-96 bg-base-100 shadow-xl products__card cursor-pointer"
+                className="card  w-96 bg-base-100 shadow-xl products__card cursor-pointer"
               >
                 <figure className="px-10 pt-10">
                   <img
