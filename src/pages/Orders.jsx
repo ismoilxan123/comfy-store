@@ -1,4 +1,8 @@
+import useProducts from "../hooks/useProducts";
+
 const Orders = () => {
+  const { loading, datas } = useProducts();
+
   return (
     <div>
       <div className="mb-12">
@@ -8,9 +12,7 @@ const Orders = () => {
         <hr className="border-black border-2" />
       </div>
       <div>
-        <h1 className="mb-4 capitalize">
-          Total orders: <span>2</span>
-        </h1>
+        <h1 className="mb-4 capitalize">Total orders:</h1>
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
@@ -18,28 +20,21 @@ const Orders = () => {
               <tr>
                 <th></th>
                 <th>Name</th>
-                <th>Address</th>
-                <th>Products</th>
+                <th>Count</th>
+                <th>Cost</th>
                 <th>Cost</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr className="bg-base-200">
-                <th>1</th>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td>$100.0</td>
-              </tr>
-              {/* row 2 */}
-              <tr>
-                <th>2</th>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-                <td>$100.0</td>
-              </tr>
+              {datas.map((data, i) => (
+                <tr key={i} className={i % 2 == 0 ? "bg-base-200" : ""}>
+                  <th>{i + 1}</th>
+                  <td>{data.title}</td>
+                  <td>{data.count}</td>
+                  <td>${data.price}</td>
+                  <td>${data.updatedAt}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

@@ -12,6 +12,7 @@ import SelectSory from "../components/products/SelectSory";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCount, setUrl } from "../redux/appSlice";
+import useProducts from "../hooks/useProducts";
 
 const Products = ({
   page,
@@ -20,12 +21,15 @@ const Products = ({
   products,
   setAddProduct,
   addProduct,
+  setEmpty,
 }) => {
   const [one, setOne] = useState(true);
   const [two, setTwo] = useState(false);
   const [three, setThree] = useState(false);
-  const dispatch = useDispatch();
   const count = useSelector((state) => state.count);
+  const { addProducts } = useProducts();
+  const dispatch = useDispatch();
+  // select orqali value olish
   function handleSelect(e) {
     dispatch(setCount(e.target.value));
   }
@@ -56,7 +60,6 @@ const Products = ({
     setTwo(false);
     setThree(true);
   }
-  console.log(url);
 
   const getProducts = async () => {
     const res = await fetch(url);
@@ -85,7 +88,13 @@ const Products = ({
     setPage(false);
     setAddProduct(null);
   }
-
+  function handleSubmit() {
+    const newOne = addProduct;
+    newOne.count = count;
+    addProducts(newOne);
+    alert("Item added to Card");
+    setEmpty(false);
+  }
   return (
     <>
       {page ? (

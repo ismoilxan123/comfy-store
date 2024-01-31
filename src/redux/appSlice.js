@@ -5,6 +5,7 @@ const appSlice = createSlice({
   initialState: {
     count: 1,
     url: "https://strapi-store-server.onrender.com/api/products",
+    all: 0,
   },
   reducers: {
     setCount: (state, action) => {

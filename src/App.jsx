@@ -12,6 +12,7 @@ const App = () => {
   const [page, setPage] = useState(false);
   const [products, setProducts] = useState([]);
   const [addProduct, setAddProduct] = useState(null);
+  const [empty, setEmpty] = useState(true);
 
   const router = createBrowserRouter([
     {
@@ -45,12 +46,13 @@ const App = () => {
               page={page}
               setAddProduct={setAddProduct}
               addProduct={addProduct}
+              setEmpty={setEmpty}
             />
           ),
         },
         {
           path: "cart",
-          element: <Cart />,
+          element: <Cart setEmpty={setEmpty} empty={empty} />,
         },
         {
           path: "checkout",
