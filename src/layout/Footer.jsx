@@ -45,7 +45,7 @@ const Footer = ({
           </h2>
           <hr className="border-black" />
         </div>
-        <div className="flex gap-4 sm:grid grid-cols-1">
+        <div className="flex gap-4 ">
           {homeProducts.map((product) => (
             <NavLink to={"/products"}>
               <div
